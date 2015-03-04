@@ -112,6 +112,7 @@ function InfoBox(opt_opts) {
   this.alignBottom_ = opt_opts.alignBottom || false;
   this.pane_ = opt_opts.pane || "floatPane";
   this.enableEventPropagation_ = opt_opts.enableEventPropagation || false;
+  this.enableContextMenu_ = opt_opts.enableContextMenu || false;
 
   this.div_ = null;
   this.closeListener_ = null;
@@ -226,7 +227,11 @@ InfoBox.prototype.createInfoBoxDiv_ = function () {
       }));
     }
 
-    this.contextListener_ = google.maps.event.addDomListener(this.div_, "contextmenu", ignoreHandler);
+    if (this.enableContextMenu_) {
+      this.contextListener_ = google.maps.event.addDomListener(this.div_, "contextmenu", cancelHandler);
+    } else {
+      this.contextListener_ = google.maps.event.addDomListener(this.div_, "contextmenu", ignoreHandler);
+    }
 
     /**
      * This event is fired when the DIV containing the InfoBox's content is attached to the DOM.
@@ -570,6 +575,10 @@ InfoBox.prototype.setOptions = function (opt_opts) {
   if (typeof opt_opts.enableEventPropagation !== "undefined") {
 
     this.enableEventPropagation_ = opt_opts.enableEventPropagation;
+  }
+  if (typeof opt_opts.enableContextMenu !== "undefined") {
+
+    this.enableContextMenu_ = opt_opts.enableContextMenu;
   }
 
   if (this.div_) {
