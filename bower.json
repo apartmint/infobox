@@ -1,11 +1,13 @@
 {
   "name": "infobox",
-  "version": "1.0.0",
-  "keywords": ["infobox", "google", "maps"],
-  "dependencies": {
-  },
-  "devDependencies": {
-  },
+  "version": "1.0.1",
+  "keywords": [
+    "infobox",
+    "google",
+    "maps"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
   "main": "src/infobox.js",
-  "ignore": [  ]
+  "ignore": []
 }
